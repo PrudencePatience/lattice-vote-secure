@@ -155,7 +155,7 @@ export const IdentityAuth = () => {
       // Encrypt identity
       setCurrentStep("encrypting");
       setMessage(`Encrypting identity "${identityNum}" locally...`);
-      const input = zama.createEncryptedInput('0x0000000000000000000000000000000000000000', address);
+      const input = zama.createEncryptedInput(contractAddress, address);
       input.add32(identityNum);
       const encrypted = await input.encrypt();
       
@@ -293,7 +293,7 @@ export const IdentityAuth = () => {
       // Step 1: Encrypt identity
       setCurrentStep("encrypting");
       setMessage(`Step 1/3: Encrypting identity "${identityNum}" locally...`);
-      const input = zama.createEncryptedInput('0x0000000000000000000000000000000000000000', address);
+      const input = zama.createEncryptedInput(contractAddress, address);
       input.add32(identityNum);
       const encrypted = await input.encrypt();
       const handleString = Array.from(encrypted.handles[0]).map(b => b.toString(16).padStart(2, '0')).join('');
