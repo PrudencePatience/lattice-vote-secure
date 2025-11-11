@@ -77,5 +77,12 @@ contract EncryptedIdentityAuth is SepoliaConfig {
     function isUserRegistered(address user) external view returns (bool) {
         return isRegistered[user];
     }
+
+    /// @notice Get registration timestamp for a user
+    /// @param user The address to query
+    /// @return timestamp The registration timestamp (0 if not registered)
+    function getRegistrationTimestamp(address user) external view returns (uint256) {
+        return isRegistered[user] ? block.timestamp : 0;
+    }
 }
 
