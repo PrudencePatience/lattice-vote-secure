@@ -46,7 +46,7 @@ contract EncryptedIdentityAuth is SepoliaConfig {
         external
         returns (ebool)
     {
-        require(!isRegistered[msg.sender], "User not registered");
+        require(isRegistered[msg.sender], "User not registered");
         
         euint32 encryptedEuint32 = FHE.fromExternal(encryptedIdentity, inputProof);
         euint32 storedIdentity = _encryptedIdentities[msg.sender];
