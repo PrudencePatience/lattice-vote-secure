@@ -13,7 +13,8 @@ contract EncryptedIdentityAuth is SepoliaConfig {
 
     // Events
     event IdentityRegistered(address indexed user, uint256 timestamp);
-    event IdentityVerified(address indexed user, uint256 timestamp);
+    event IdentityVerified(address indexed user, uint256 timestamp, bool success);
+    event IdentityVerificationFailed(address indexed user, uint256 timestamp, string reason);
 
     // Mapping from user address to their encrypted identity
     mapping(address => euint32) private _encryptedIdentities;
@@ -58,7 +59,7 @@ contract EncryptedIdentityAuth is SepoliaConfig {
         FHE.allowThis(result);
         FHE.allow(result, msg.sender);
 
-        emit IdentityVerified(msg.sender, block.timestamp);
+        emit IdentityVerified(msg.sender, block.timestamp, true);
 
         return result;
     }
