@@ -21,7 +21,7 @@ export function useZamaInstance() {
 
     const abortController = new AbortController();
     const mockChains: Record<number, string> = {
-      31337: "http://localhost:9999", // Hardhat localhost - wrong port
+      31337: "http://localhost:8545", // Hardhat localhost
     };
 
     createFhevmInstance({
