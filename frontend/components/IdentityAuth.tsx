@@ -220,6 +220,9 @@ export const IdentityAuth = () => {
           errorMessage = "❌ Registration failed";
           errorDetails = error.message;
         }
+
+        // Add helpful troubleshooting information
+        errorDetails += "\n\nTroubleshooting tips:\n• Ensure your wallet is connected\n• Check if Hardhat node is running (npx hardhat node)\n• Verify you have sufficient ETH for gas fees\n• Make sure you're on the correct network";
       } else {
         errorDetails = String(error);
       }
