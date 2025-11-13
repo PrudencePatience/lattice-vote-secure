@@ -33,6 +33,7 @@ const config: HardhatUserConfig = {
     enabled: process.env.REPORT_GAS ? true : false,
     excludeContracts: [],
     coinmarketcap: vars.get("COINMARKETCAP_API_KEY", ""),
+    gasPrice: 20,
   },
   networks: {
     hardhat: {
