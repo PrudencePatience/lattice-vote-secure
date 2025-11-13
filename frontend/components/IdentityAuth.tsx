@@ -475,7 +475,7 @@ export const IdentityAuth = () => {
     "inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 font-semibold text-white shadow-lg " +
     "transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl active:scale-95 " +
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 " +
-    "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed";
+    "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed min-w-[200px]";
 
   return (
     <div className="grid w-full gap-6">
