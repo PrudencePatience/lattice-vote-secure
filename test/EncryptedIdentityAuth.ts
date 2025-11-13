@@ -168,5 +168,26 @@ describe("EncryptedIdentityAuth", function () {
         .verify(encryptedIdentity.handles[0], encryptedIdentity.inputProof)
     ).to.be.revertedWith("User not registered");
   });
+
+  it("should return correct registration timestamp", async function () {
+    const userIdentity = 12345;
+    const encryptedIdentity = await fhevm
+      .createEncryptedInput(contractAddress, signers.alice.address)
+      .add32(userIdentity)
+      .encrypt();
+
+    const tx = await contract
+      .connect(signers.alice)
+      .register(encryptedIdentity.handles[0], encryptedIdentity.inputProof);
+    const receipt = await tx.wait();
+    const registrationBlock = await ethers.provider.getBlock(receipt!.blockNumber);
+
+    const timestamp = await contract.getRegistrationTimestamp(signers.alice.address);
+    expect(timestamp).to.equal(registrationBlock!.timestamp);
+
+    // Check unregistered user returns 0
+    const unregisteredTimestamp = await contract.getRegistrationTimestamp(signers.bob.address);
+    expect(unregisteredTimestamp).to.equal(0);
+  });
 });
 
