@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { useAccount, useChainId, usePublicClient } from "wagmi";
 import { ethers } from "ethers";
 import { useEthersSigner } from "@/hooks/useEthersSigner";
@@ -247,6 +247,17 @@ export const IdentityAuth = () => {
       setIsRegistering(false);
     }
   }, [userIdentity, zama, zamaLoading, zamaError, ethersSignerPromise, contractAddress, address, isConnected, chainId, checkRegistration]);
+
+  // Memoize button disabled states for performance
+  const isRegistrationDisabled = useMemo(() =>
+    !userIdentity || isRegistering || isVerifying || zamaLoading || isRegistered,
+    [userIdentity, isRegistering, isVerifying, zamaLoading, isRegistered]
+  );
+
+  const isVerificationDisabled = useMemo(() =>
+    !userIdentity || isRegistering || isVerifying || zamaLoading,
+    [userIdentity, isRegistering, isVerifying, zamaLoading]
+  );
 
   const handleVerify = useCallback(async () => {
     if (!userIdentity) {
@@ -615,7 +626,7 @@ export const IdentityAuth = () => {
               <button
                 className={buttonClass}
                 onClick={handleRegister}
-                disabled={!userIdentity || isRegistering || isVerifying || zamaLoading || isRegistered}
+                disabled={isRegistrationDisabled}
               >
                 {isRegistering ? "Encrypting & Registering..." : "🔒 Encrypt & Register Identity"}
               </button>
@@ -634,7 +645,7 @@ export const IdentityAuth = () => {
                 <button
                   className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:from-green-700 hover:to-emerald-700 hover:shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed"
                   onClick={handleVerify}
-                  disabled={!userIdentity || isRegistering || isVerifying || zamaLoading}
+                  disabled={isVerificationDisabled}
                 >
                   {isVerifying ? "Verifying & Decrypting..." : "🔓 Verify & Decrypt Result"}
                 </button>
