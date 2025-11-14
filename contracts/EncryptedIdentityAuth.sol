@@ -27,6 +27,7 @@ contract EncryptedIdentityAuth is SepoliaConfig {
     /// @param inputProof The input proof for the encrypted value
     function register(externalEuint32 encryptedIdentity, bytes calldata inputProof) external {
         require(!isRegistered[msg.sender], "User already registered");
+        require(inputProof.length > 0, "Input proof cannot be empty");
 
         euint32 encryptedEuint32 = FHE.fromExternal(encryptedIdentity, inputProof);
         _encryptedIdentities[msg.sender] = encryptedEuint32;
@@ -48,6 +49,7 @@ contract EncryptedIdentityAuth is SepoliaConfig {
         returns (ebool)
     {
         require(isRegistered[msg.sender], "User not registered");
+        require(inputProof.length > 0, "Input proof cannot be empty");
         
         euint32 encryptedEuint32 = FHE.fromExternal(encryptedIdentity, inputProof);
         euint32 storedIdentity = _encryptedIdentities[msg.sender];
