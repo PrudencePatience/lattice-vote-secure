@@ -31,6 +31,7 @@ export const IdentityAuth = () => {
   const [encryptedResultHandle, setEncryptedResultHandle] = useState<string | null>(null);
   const [decryptedResult, setDecryptedResult] = useState<boolean | null>(null);
   const [currentStep, setCurrentStep] = useState<string>("");
+  const [registrationTimestamp, setRegistrationTimestamp] = useState<number | null>(null);
 
   // Prevent hydration mismatch
   useEffect(() => {
@@ -64,6 +65,19 @@ export const IdentityAuth = () => {
         args: [address as `0x${string}`],
       });
       setIsRegistered(registered as boolean);
+
+      // Get registration timestamp if registered
+      if (registered) {
+        const timestamp = await publicClient.readContract({
+          address: contractAddress as `0x${string}`,
+          abi: EncryptedIdentityAuthABI.abi,
+          functionName: "getRegistrationTimestamp",
+          args: [address as `0x${string}`],
+        });
+        setRegistrationTimestamp(Number(timestamp));
+      } else {
+        setRegistrationTimestamp(null);
+      }
     } catch (error: unknown) {
       setIsRegistered(false);
 
@@ -585,6 +599,11 @@ export const IdentityAuth = () => {
                   <span className="text-orange-600">Not Registered</span>
                 )}
               </p>
+              {isRegistered && registrationTimestamp && (
+                <p className="text-xs text-blue-600 mt-2">
+                  <strong>Registered:</strong> {new Date(registrationTimestamp * 1000).toLocaleString()}
+                </p>
+              )}
             </div>
 
             {/* Encryption Section */}
