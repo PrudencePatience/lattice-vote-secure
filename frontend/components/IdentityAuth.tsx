@@ -628,7 +628,12 @@ export const IdentityAuth = () => {
                 onClick={handleRegister}
                 disabled={isRegistrationDisabled}
               >
-                {isRegistering ? "Encrypting & Registering..." : "🔒 Encrypt & Register Identity"}
+                {isRegistering ? (
+                <span className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Encrypting & Registering...
+                </span>
+              ) : "🔒 Encrypt & Register Identity"}
               </button>
               {isRegistered && (
                 <p className="text-xs text-green-600 mt-2">✓ Identity already registered</p>
@@ -647,7 +652,12 @@ export const IdentityAuth = () => {
                   onClick={handleVerify}
                   disabled={isVerificationDisabled}
                 >
-                  {isVerifying ? "Verifying & Decrypting..." : "🔓 Verify & Decrypt Result"}
+                  {isVerifying ? (
+                    <span className="flex items-center gap-2">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      Verifying & Decrypting...
+                    </span>
+                  ) : "🔓 Verify & Decrypt Result"}
                 </button>
               </div>
             )}
