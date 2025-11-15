@@ -189,5 +189,32 @@ describe("EncryptedIdentityAuth", function () {
     const unregisteredTimestamp = await contract.getRegistrationTimestamp(signers.bob.address);
     expect(unregisteredTimestamp).to.equal(0);
   });
+
+  it("should reject empty input proofs", async function () {
+    const userIdentity = 12345;
+    const encryptedIdentity = await fhevm
+      .createEncryptedInput(contractAddress, signers.alice.address)
+      .add32(userIdentity)
+      .encrypt();
+
+    // Try to register with empty proof
+    await expect(
+      contract
+        .connect(signers.alice)
+        .register(encryptedIdentity.handles[0], "0x")
+    ).to.be.revertedWith("Input proof cannot be empty");
+
+    // Register normally first
+    await contract
+      .connect(signers.alice)
+      .register(encryptedIdentity.handles[0], encryptedIdentity.inputProof);
+
+    // Try to verify with empty proof
+    await expect(
+      contract
+        .connect(signers.alice)
+        .verify(encryptedIdentity.handles[0], "0x")
+    ).to.be.revertedWith("Input proof cannot be empty");
+  });
 });
 
