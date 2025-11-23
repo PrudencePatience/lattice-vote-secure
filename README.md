@@ -2,6 +2,14 @@
 
 A fully homomorphic encryption (FHE) based identity authentication system built with FHEVM, Hardhat, and Next.js.
 
+## Demo Video
+
+📹 [Watch Project Demo Video](self.mp4)
+
+## Live Deployment
+
+🚀 [View Live Application](https://selfself.vercel.app/)
+
 ## Overview
 
 This project implements an encrypted identity authentication system where users can:
