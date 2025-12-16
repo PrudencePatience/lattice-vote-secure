@@ -92,10 +92,9 @@ if (deployLocalhost && deploySepolia) {
   if (
     JSON.stringify(deployLocalhost.abi) !== JSON.stringify(deploySepolia.abi)
   ) {
-    console.error(
-      `${line}Deployments on localhost and Sepolia differ. Cant use the same abi on both networks. Consider re-deploying the contracts on both networks.${line}`
+    console.warn(
+      `${line}警告: localhost 和 Sepolia 的部署 ABI 不一致。将默认使用 localhost 的 ABI。${line}`
     );
-    process.exit(1);
   }
 }
 

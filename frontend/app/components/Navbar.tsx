@@ -24,19 +24,33 @@ export function Navbar() {
   };
 
   return (
-    <nav className="flex w-full px-3 md:px-0 h-fit py-6 justify-between items-center bg-white/80 backdrop-blur-sm shadow-sm">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center">
-          <span className="text-white font-bold text-lg">🔐</span>
+    <nav className="sticky top-0 z-50 w-full border-b bg-white/70 backdrop-blur-md transition-all">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 max-w-5xl">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/20">
+            <span className="text-xl">🛡️</span>
+          </div>
+          <div className="hidden sm:flex flex-col">
+            <h1 className="text-xl font-bold tracking-tight text-slate-900 leading-none">
+              Lattice <span className="text-blue-600">Secure</span>
+            </h1>
+            <div className="flex items-center gap-2 mt-1">
+              {getNetworkBadge()}
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-            Encrypted Identity Auth
-          </h1>
-          {getNetworkBadge()}
+        
+        <div className="flex items-center gap-4">
+          <ConnectButton 
+            chainStatus="icon" 
+            showBalance={false}
+            accountStatus={{
+              smallScreen: 'avatar',
+              largeScreen: 'full',
+            }}
+          />
         </div>
       </div>
-      <ConnectButton />
     </nav>
   );
 }

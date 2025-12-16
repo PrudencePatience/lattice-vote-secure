@@ -19,12 +19,25 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`bg-gradient-to-br from-blue-50 to-indigo-100 text-foreground antialiased`}>
-        <div className="fixed inset-0 w-full h-full z-[-20] min-w-[850px]"></div>
+      <body className="min-h-screen bg-slate-50 text-foreground antialiased selection:bg-blue-100 selection:text-blue-900">
+        <div className="fixed inset-0 z-[-10] h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div className="fixed inset-0 z-[-20] h-full w-full bg-gradient-to-tr from-blue-50/50 via-white to-indigo-50/50"></div>
         <ClientProviders>
-          <main className="flex flex-col max-w-screen-lg mx-auto pb-20 min-w-[850px]">
-            {children}
-          </main>
+          <div className="relative flex min-h-screen flex-col">
+            <main className="flex-1">
+              <div className="container mx-auto px-4 md:px-6 max-w-5xl py-8">
+                {children}
+              </div>
+            </main>
+            <footer className="border-t py-6 md:py-0">
+              <div className="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row max-w-5xl px-4">
+                <p className="text-center text-sm leading-loose text-slate-500 md:text-left">
+                  Built with <span className="text-blue-600">FHEVM</span> & <span className="text-indigo-600">Zama</span>. 
+                  Secure, private, and verifiable.
+                </p>
+              </div>
+            </footer>
+          </div>
         </ClientProviders>
       </body>
     </html>
