@@ -17,25 +17,25 @@ This project implements an encrypted identity authentication system where users 
 2. Verify their identity without exposing plaintext data
 3. All operations use FHE encryption for complete privacy
 
-## �?Features
+## ✨ Features
 
 - **🔐 Encrypted Identity Registration**: Users register their identity using FHE encryption
 - **🔓 Privacy-Preserving Verification**: Identity verification without exposing plaintext
 - **🌈 Rainbow Wallet Integration**: Modern wallet connection using RainbowKit
-- **�?FHEVM Integration**: Full support for FHE operations on blockchain
+- ** FHEVM Integration**: Full support for FHE operations on blockchain
 - **🎨 Beautiful UI**: Modern, client-ready interface with loading states
 - **📅 Registration Timestamp Tracking**: View when identities were registered
-- **🛡�?Enhanced Security**: Input validation and proof verification
+- **🛡 Enhanced Security**: Input validation and proof verification
 - **🧪 Comprehensive Testing**: Full test coverage including edge cases
 
-## 🏗�?Contract Deployment
+## 🏗️ Contract Deployment
 
 ### Sepolia Testnet
 - **Contract Address**: `0x9529C86672CDFd1DE83D64c5087B01B0e3A3fcBE`
 - **Network**: Sepolia Testnet (Chain ID: 11155111)
 - **Block Explorer**: [Etherscan Sepolia](https://sepolia.etherscan.io/address/0x9529C86672CDFd1DE83D64c5087B01B0e3A3fcBE)
 
-## 🛠�?Quick Start
+## 🛠️ Quick Start
 
 ### Prerequisites
 - Node.js >= 20
@@ -54,8 +54,8 @@ npx hardhat vars set MNEMONIC
 npx hardhat vars set INFURA_API_KEY
 
 # Copy FHEVM internal files from template
-cp -r "../fhevm-hardhat-template�?frontend/fhevm/internal" "frontend/fhevm/"
-cp "../fhevm-hardhat-template�?frontend/fhevm/FhevmDecryptionSignature.ts" "frontend/fhevm/"
+cp -r "../fhevm-hardhat-template旧/frontend/fhevm/internal" "frontend/fhevm/"
+cp "../fhevm-hardhat-template旧/frontend/fhevm/FhevmDecryptionSignature.ts" "frontend/fhevm/"
 ```
 
 ### Development
@@ -95,10 +95,10 @@ pro15/
 ├── test/               # Test suites
 ├── deploy/             # Deployment scripts
 ├── frontend/           # Next.js React application
-�?  ├── app/            # Next.js 13+ app router
-�?  ├── components/     # React components
-�?  ├── hooks/          # Custom React hooks
-�?  └── fhevm/          # FHEVM integration
+├── app/            # Next.js 13+ app router
+├── components/     # React components
+├── hooks/          # Custom React hooks
+│   └── fhevm/          # FHEVM integration
 └── README.md
 ```
 
@@ -115,7 +115,7 @@ pro15/
 - 🔐 Client-side FHE encryption/decryption
 - 📊 Real-time status updates
 - 🎯 Network switching (Local/Sepolia)
-- �?Performance optimizations
+- ⚡ Performance optimizations
 
 ## 🧪 Testing
 
